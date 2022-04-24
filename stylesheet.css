@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.healthbar {
+  background-color: yellow;
+  height: 30px;
+  width: 100%;
+}
+.timer {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+  flex-shrink: 0;
+}
+.container {
+  position: relative;
+  display: inline-block;
+}
+.UI {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+}
