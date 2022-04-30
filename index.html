@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style>
-      /* * {
-        box-sizing: border-box;
-      } */
-    </style>
     <link rel="stylesheet" href="stylesheet.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,11 +12,23 @@
     <div class="container">
       <div class="UI">
         <!-- player health -->
-        <div class="healthbar"></div>
+        <div
+          class="parenthhealthbar"
+          style="display: flex; justify-content: flex-end"
+        >
+          <div class="healthbar" style="width: 100%"></div>
+          <!-- remaining health -->
+          <div id="playerHealth" style="width: 100%"></div>
+        </div>
+
         <!-- timer -->
-        <div class="timer"></div>
+        <div id="timer" class="timer">10</div>
         <!-- enemy health -->
-        <div class="healthbar"></div>
+        <div class="parenthhealthbar">
+          <div class="healthbar"></div>
+          <!-- remaining health -->
+          <div id="enemyHealth"></div>
+        </div>
       </div>
       <canvas></canvas>
     </div>
