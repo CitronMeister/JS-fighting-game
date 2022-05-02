@@ -1,14 +1,17 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+// windows size
 canvas.width = 1280;
 canvas.height = 720;
 
+// entity movementspeed
 const movementSpeed = 5;
+// gravity constant
+const gravity = 0.7;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 0.7;
 
 class Sprite {
   constructor({ position, velocity, color, offset }) {
@@ -129,7 +132,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
-let timer = 10;
+let timer = 11;
 function decreaseTimer() {
   if (timer > 0) {
     setTimeout(decreaseTimer, 1000);
@@ -138,6 +141,16 @@ function decreaseTimer() {
   }
   if (timer == 0 && player.health === enemy.health) {
     console.log("TIE");
+    document.querySelector('#displayText').innerHTML = 'Tie';
+    document.querySelector('#displayText').style.display = 'flex';
+  } else if(timer == 0 && player.health > enemy.health){
+    console.log("PLAYER WINS!");
+    document.querySelector('#displayText').innerHTML = 'Player Wins!';
+    document.querySelector('#displayText').style.display = 'flex';
+  } else if(timer == 0 && player.health < enemy.health){
+    console.log("Enemy Wins");
+    document.querySelector('#displayText').innerHTML = 'Enemy Wins!';
+    document.querySelector('#displayText').style.display = 'flex';
   }
 }
 
