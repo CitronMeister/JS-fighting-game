@@ -13,6 +13,7 @@ const gravity = 0.7;
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 
+
 const background = new Sprite({
   position:{
     x: 0,
@@ -29,9 +30,18 @@ const shop = new Sprite({
   imageSrc: '/images/shop.png',
   scale: 2.5,
   framesMax: 6,
+  framesHold: 9
 })
-
-
+const bird = new Sprite({
+  position:{
+    x: 340,
+    y: 380
+  },
+  imageSrc: '/images/BirdSheet.png',
+  scale: 1,
+  framesMax: 30,
+  framesHold: 19
+})
 
 const player = new Fighter({
   position: {
@@ -47,6 +57,14 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSrc: '/images/Martial Hero/Sprites/Idle.png',
+  framesMax: 8,
+  scale: 2.5,
+  framesHold: 10,
+  offset: {
+    x: 215,
+    y: 155,
+  }
 });
 
 const enemy = new Fighter({
@@ -63,6 +81,14 @@ const enemy = new Fighter({
     x: -50,
     y: 0,
   },
+  imageSrc: '/images/Martial Hero/Sprites/Idle.png',
+  framesMax: 8,
+  scale: 2.5,
+  framesHold: 10,
+  offset: {
+    x: 215,
+    y: 155,
+  }
 });
 
 const keys = {
@@ -95,6 +121,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
   shop.update();
+  bird.update();
   player.update();
   enemy.update();
 
@@ -102,16 +129,16 @@ function animate() {
   enemy.velocity.x = 0;
 
   //player movement
-  if (keys.a.pressed && player.lastKey === "a") {
+  if (keys.a.pressed && player.lastKey === "a" && player.position.x > 0) {
     player.velocity.x = -movementSpeed;
-  } else if (keys.d.pressed && player.lastKey === "d") {
+  } else if (keys.d.pressed && player.lastKey === "d" && player.position.x <= canvas.width - 50) {
     player.velocity.x = movementSpeed;
   }
 
   //enemy movement
-  if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
+  if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft" && enemy.position.x > 0) {
     enemy.velocity.x = -movementSpeed;
-  } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
+  } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight"  && enemy.position.x <= canvas.width - 50) {
     enemy.velocity.x = movementSpeed;
   }
   //detect collision player to enemy
